@@ -37,6 +37,25 @@ public class ScheduleRepository {
         return result.stream().findFirst();
     }
 
+    // ✅ 추가: 비밀번호 검증
+    public boolean checkPassword(Long id, String password) {
+        String sql = "SELECT COUNT(*) FROM schedules WHERE id = ? AND password = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id, password);
+        return count != null && count > 0;
+    }
+
+    // ✅ 추가: 일정 수정
+    public int update(Long id, String title, String author) {
+        String sql = "UPDATE schedules SET title = ?, author = ?, updated_at = NOW() WHERE id = ?";
+        return jdbcTemplate.update(sql, title, author, id);
+    }
+
+    // ✅ 추가: 일정 삭제
+    public int delete(Long id) {
+        String sql = "DELETE FROM schedules WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
+
     private static class ScheduleRowMapper implements RowMapper<Schedule> {
         @Override
         public Schedule mapRow(ResultSet rs, int rowNum) throws SQLException {

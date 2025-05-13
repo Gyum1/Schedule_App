@@ -37,6 +37,22 @@ public class ScheduleService {
         return convertToResponseDto(schedule);
     }
 
+    // ✅ 추가: 일정 수정 (비밀번호 검증)
+    public void updateSchedule(Long id, ScheduleRequestDto requestDto, String password) {
+        boolean valid = scheduleRepository.checkPassword(id, password);
+        if (!valid) throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+
+        scheduleRepository.update(id, requestDto.getTitle(), requestDto.getAuthor());
+    }
+
+    // ✅ 추가: 일정 삭제 (비밀번호 검증)
+    public void deleteSchedule(Long id, String password) {
+        boolean valid = scheduleRepository.checkPassword(id, password);
+        if (!valid) throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+
+        scheduleRepository.delete(id);
+    }
+
     private ScheduleResponseDto convertToResponseDto(Schedule schedule) {
         ScheduleResponseDto dto = new ScheduleResponseDto();
         dto.setId(schedule.getId());
