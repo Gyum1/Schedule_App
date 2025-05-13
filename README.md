@@ -23,9 +23,11 @@ Table schedules {
   created_at datetime [not null, default: CURRENT_TIMESTAMP]
   updated_at datetime [not null, default: CURRENT_TIMESTAMP, note: 'ON UPDATE CURRENT_TIMESTAMP']
 }
+```
 
 📮 API 명세서
 1. 일정 생성
+```bash
 POST /schedules
 
 
@@ -34,9 +36,13 @@ POST /schedules
   "author": "태겸",
   "password": "1234"
 }
+```
 Response
+```bash
+
 
 일정이 성공적으로 등록되었습니다.
+```
 
 2. 전체 일정 조회
 GET /schedules
