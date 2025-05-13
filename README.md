@@ -27,8 +27,9 @@ Table schedules {
 
 📮 API 명세서
 1. 일정 생성
+- POST /schedules
 ```bash
-POST /schedules
+
 
 
 {
@@ -45,7 +46,8 @@ Response
 ```
 
 2. 전체 일정 조회
-GET /schedules
+- GET /schedules
+```bash
 
 [
   {
@@ -56,10 +58,10 @@ GET /schedules
     "updatedAt": "2025-05-13T19:10:00"
   }
 ]
-
+```
 3. 선택한 일정 조회
-GET /schedules/{id}
-
+- GET /schedules/{id}
+```bash
 {
   "id": 1,
   "title": "스터디 준비",
@@ -67,32 +69,40 @@ GET /schedules/{id}
   "createdAt": "2025-05-13T19:10:00",
   "updatedAt": "2025-05-13T19:10:00"
 }
+```
 
 4. 일정 수정
-PUT /schedules/{id}
+- PUT /schedules/{id}
+```bash
 {
   "title": "스터디 복습",
   "author": "태겸",
   "password": "1234"
 }
+```
 Response
-
+```bash
 일정이 성공적으로 수정되었습니다.
+```
 
 5. 일정 삭제
-DELETE /schedules/{id}
-
+- DELETE /schedules/{id}
+```bash
 {
   "password": "1234"
 }
+```
 Response
-
+```bash
 일정이 성공적으로 삭제되었습니다.
+```
 
 ❗ 예외 처리
+```bash
 비밀번호 불일치 → 400 Bad Request + "비밀번호가 일치하지 않습니다."
 
 없는 ID 조회 → 400 Bad Request + "해당 ID의 일정이 존재하지 않습니다."
+```
 
 📝 개발 규칙
 일정 작성, 조회 시 비밀번호는 절대 반환하지 않음
