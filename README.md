@@ -13,6 +13,7 @@ JDBC와 MySQL을 사용하여 CRUD 기능을 직접 구현하였습니다.
 ---
 
 ## 📑 ERD
+<img width="339" alt="일정관리앱 ERD" src="https://github.com/user-attachments/assets/86b82d0e-9a98-435d-8920-7902e4d54237" />
 
 ```sql
 Table schedules {
